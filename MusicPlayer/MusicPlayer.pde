@@ -9,6 +9,7 @@ import ddf.minim.ugens.*;
 //Global Variables
 Minim minim; //creates object to access all functions
 AudioPlayer song1; //creates "playlist" variable holding extentions such as MP3
+int loopIntNum = 1; //connects variable to buttons, increasing the loop number //loopIntNum+1, loopIntNum+=
 
 void setup () {
   fullScreen( displayWidth & displayHeight );
@@ -45,7 +46,11 @@ void keyPressed() {
   //
   if ( key == 'f' || key == 'F' ) song1.skip(1000);//Fast Forward 1 second
   if ( key == 'r' || key == 'R' ) song1.skip(-1000);//Rewind 1 second
+  //
+  if ( key == 'l' || key == 'L' ) song1.loop(loopIntNum); //Loop button
+  
 } //End keyPressed
 
 void mousePressed() {  
+  
 } //End keyPressed
