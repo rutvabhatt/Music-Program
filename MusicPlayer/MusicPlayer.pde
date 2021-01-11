@@ -88,6 +88,25 @@ void keyPressed() {
   if ( key == 'r' || key == 'R' ) song[currentSong].skip(-1000);//Rewind 1 second
   //
   if ( key == 'l' || key == 'L' ) song[currentSong].loop(loopIntNum); //Loop button
+  //
+  //Next Button
+  if ( key == 'n' || key == 'N' ) {
+    if (song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      currentSong++;
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      currentSong++;
+    } 
+    currentSong++;
+  } //End Next button
+  //
+  //Previous Button ("Backwards")
+  if ( key == 'b' || key == 'B' ) {
+    currentSong--;
+  } //End Previous Button
 } //End keyPressed
 
 void mousePressed() {
