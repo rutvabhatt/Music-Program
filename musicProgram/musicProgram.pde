@@ -13,9 +13,14 @@ AudioPlayer song3;
 AudioPlayer soundEffect;
 int numberOfSong = 3;
 int numberOfSoundEffects = 1;
+int rectX, rectY, rectWidth, rectHeight, outside;
+float boxX, boxY, boxWidth, boxHeight;
+color buttonColor, black = #000000, red = #D83737, white = #FFFFFF;
+Boolean draw = false;
 
 void setup () {
   fullScreen ( displayWidth & displayHeight);
+  population();
   minim = new Minim(this);
   //songs
   song1 = minim.loadFile("../Music/Vishnu - Patrick Patrikios.mp3"); 
@@ -29,6 +34,14 @@ void setup () {
 }
 
 void draw () {
+  background(black);
+  //quitButton
+  println(mouseX, mouseY); 
+  if (mouseX>rectX && mouseX<rectX+rectWidth && mouseY>rectY && mouseY<rectY+rectHeight) { 
+    buttonColor = red;
+  } else { 
+    buttonColor = white;
+  }
 }
 
 
