@@ -21,6 +21,9 @@ int rectX, rectY, rectWidth, rectHeight, outside;
 float boxX, boxY, boxWidth, boxHeight;
 float boxX2, boxY2, boxWidth2, boxHeight2;
 float playPauseX, playPauseY, playPauseDiameter;
+float stopX, stopY, stopDiameter;
+float forwardX, forwardY, forwardWidth, forwardHeight;
+float backX, backY, backWidth, backHeight;
 color buttonColor, black = #000000, red = #D83737, white = #FFFFFF;
 Boolean draw = false;
 
@@ -57,6 +60,7 @@ void setup () {
     println("Genre: ", songMetaData[i].genre() );
     println("Encoded: ", songMetaData[i].encoded() );
 }
+}
 
 void draw () {
   background(black);
@@ -68,12 +72,14 @@ void draw () {
     buttonColor = white;
   }
 }
-
 ellipse(playPauseX, playPauseY, playPauseDiameter);
+ellipse(stopX, stopY, stopDiameter);
+rect(forwardX, forwardY, forwardWidth, forwardHeight);
 rect(rectX, rectY, rectWidth, rectHeight, outside);
 rect(boxX, boxY, boxWidth, boxHeight);
-
+//
 void mousePressed () {
+  //playPauseButton
   if (mouseX>playPauseX && mouseX<playPauseX+playPauseDiameter && mouseY>playPauseY && mouseY<playPauseY+playPauseDiameter) {
     if ( song[currentSong].isPlaying () ) {
       song[currentSong].pause();
@@ -84,4 +90,14 @@ void mousePressed () {
       song[currentSong].play();
     }
   } //End of Play-pause button
-  }
+  //
+  if (mouseX>X && mouseX<playPauseX+playPauseDiameter && mouseY>playPauseY && mouseY<playPauseY+playPauseDiameter) {
+    if (song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+    } else if (song[currentSong].position() == song[currentSong].length() ) {//.length() = end
+      song[currentSong].rewind();
+    } else {
+      song[currentSong].rewind();
+    }
+  } //End of stop button
