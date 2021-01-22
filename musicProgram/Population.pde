@@ -8,4 +8,8 @@ void population () {
   playPauseX = width*1/2;
   playPauseY = height*1/2;
   playPauseDiameter = 1/4;
+  
+  stopX = width*1/3 ;
+  stopY = height*1/2 ;
+  stopDiameter = 1/4 ;
 }

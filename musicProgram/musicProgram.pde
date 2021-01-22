@@ -23,6 +23,7 @@ float boxX2, boxY2, boxWidth2, boxHeight2;
 float playPauseX, playPauseY, playPauseDiameter;
 float stopX, stopY, stopDiameter;
 float forwardX, forwardY, forwardWidth, forwardHeight;
+float reverseX, reverseY, reverseWidth, reverseHeight;
 float backX, backY, backWidth, backHeight;
 color buttonColor, black = #000000, red = #D83737, white = #FFFFFF;
 Boolean draw = false;
@@ -35,7 +36,7 @@ void setup () {
   song[currentSong] = minim.loadFile("../Music/Main/Two Moons - Bobby Richards.mp3") ; 
   song[currentSong+=1] = minim.loadFile("../Music/Main/Dangerous Toys - SefChol.mp3") ;
   song[currentSong+=1] = minim.loadFile("../Music/Main/Know Myself - Patrick Patrikios.mp3") ;
-  
+
   currentSong = numberOfSongs - numberOfSongs;
   for (int i=currentSong; i<numberOfSongs; i++) {
     songMetaData[i] = song[i].getMetaData();
@@ -59,7 +60,7 @@ void setup () {
     println("Track: ", songMetaData[i].track() );
     println("Genre: ", songMetaData[i].genre() );
     println("Encoded: ", songMetaData[i].encoded() );
-}
+  }
 }
 
 void draw () {
@@ -72,9 +73,11 @@ void draw () {
     buttonColor = white;
   }
 }
+//
 ellipse(playPauseX, playPauseY, playPauseDiameter);
 ellipse(stopX, stopY, stopDiameter);
 rect(forwardX, forwardY, forwardWidth, forwardHeight);
+rect(reverseX, reverseY, reverseWidth, reverseHeight);
 rect(rectX, rectY, rectWidth, rectHeight, outside);
 rect(boxX, boxY, boxWidth, boxHeight);
 //
@@ -91,7 +94,7 @@ void mousePressed () {
     }
   } //End of Play-pause button
   //
-  if (mouseX>X && mouseX<playPauseX+playPauseDiameter && mouseY>playPauseY && mouseY<playPauseY+playPauseDiameter) {
+  if (mouseX>stopX && mouseX<stopX+stopDiameter && mouseY>stopY && mouseY<stopY+stopDiameter) {
     if (song[currentSong].isPlaying() ) {
       song[currentSong].pause();
       song[currentSong].rewind();
@@ -101,3 +104,11 @@ void mousePressed () {
       song[currentSong].rewind();
     }
   } //End of stop button
+  //
+  if (mouseX>forwardX && mouseX<forwardX+forwardDiameter && mouseY>forwardY && mouseY<forwardY+forwardDiameter) {
+    song[currentSong].skip(10000); //Fast forward 10 seconds
+  } //
+  //
+  if (mouseX>reverseX && mouseX<reverseX+reverseDiameter && mouseY>reverseY && mouseY<reverseY+reverseDiameter) {
+    song[currentSong].skip(-10000); 
+  }
