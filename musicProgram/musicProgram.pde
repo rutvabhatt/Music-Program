@@ -31,6 +31,7 @@ Boolean draw = false;
 void setup () {
   fullScreen ( displayWidth & displayHeight);
   population();
+  textSetup();
   minim = new Minim(this);
   //songs
   song[currentSong] = minim.loadFile("../Music/Main/Two Moons - Bobby Richards.mp3") ; 
@@ -72,16 +73,18 @@ void draw () {
   } else { 
     buttonColor = white;
   }
-}
-//
-ellipse(playPauseX, playPauseY, playPauseDiameter);
-ellipse(stopX, stopY, stopDiameter);
+ellipse(playPauseX, playPauseY, playPauseDiameter, playPauseDiameter);
+ellipse(stopX, stopY, stopDiameter, stopDiameter);
 rect(forwardX, forwardY, forwardWidth, forwardHeight);
 rect(reverseX, reverseY, reverseWidth, reverseHeight);
 rect(rectX, rectY, rectWidth, rectHeight, outside);
 rect(boxX, boxY, boxWidth, boxHeight);
+}
+//
 //
 void mousePressed () {
+  //quitButton
+  
   //playPauseButton
   if (mouseX>playPauseX && mouseX<playPauseX+playPauseDiameter && mouseY>playPauseY && mouseY<playPauseY+playPauseDiameter) {
     if ( song[currentSong].isPlaying () ) {
@@ -105,10 +108,12 @@ void mousePressed () {
     }
   } //End of stop button
   //
-  if (mouseX>forwardX && mouseX<forwardX+forwardDiameter && mouseY>forwardY && mouseY<forwardY+forwardDiameter) {
-    song[currentSong].skip(10000); //Fast forward 10 seconds
+  if (mouseX>forwardX && mouseX<forwardX+forwardWidth && mouseY>forwardY && mouseY<forwardY+forwardHeight) {
+    song[currentSong].skip(10000); //Forward 10 seconds
   } //
   //
-  if (mouseX>reverseX && mouseX<reverseX+reverseDiameter && mouseY>reverseY && mouseY<reverseY+reverseDiameter) {
-    song[currentSong].skip(-10000); 
+  if (mouseX>reverseX && mouseX<reverseX+reverseWidth && mouseY>reverseY && mouseY<reverseY+reverseHeight) {
+    song[currentSong].skip(-10000); //Reverse 10 seconds
   }
+  }
+  

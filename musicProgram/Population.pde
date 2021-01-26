@@ -12,4 +12,14 @@ void population () {
   stopX = width*1/3 ;
   stopY = height*1/2 ;
   stopDiameter = 1/4 ;
+  
+  forwardX = width ;
+  forwardY = height ;
+  forwardWidth = width ;
+  forwardHeight = height ;
+  
+  reverseX = width;
+  reverseY = height ;
+  reverseWidth = width ;
+  reverseHeight = height ;
 }
